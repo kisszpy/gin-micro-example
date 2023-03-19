@@ -40,11 +40,6 @@ func NewServiceRegister(serviceName string, port int) {
 	if err != nil {
 		panic("error config .... ")
 	}
-
-	namingClient, err = clients.CreateNamingClient(map[string]interface{}{
-		"clientConfig":  clientConfig,
-		"serverConfigs": serverConfigs,
-	})
 	// Register Gin service to Nacos
 	success, err := namingClient.RegisterInstance(vo.RegisterInstanceParam{
 		Ip:          GetLocalIPAddress(),

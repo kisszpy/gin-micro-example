@@ -11,17 +11,13 @@ import (
 
 var NamingClient *naming_client.INamingClient
 
-type Micro interface {
-	// NewServiceRegister 服务注册 /**
-	NewServiceRegister(serviceName string, port int)
-}
 type NacosMicro struct {
 }
 
 func TestHello() {
 	println("test Hello invoke ................. ")
 }
-func (f *NacosMicro) NewServiceRegister(serviceName string, port int) {
+func NewServiceRegister(serviceName string, port int) {
 	clientConfig := constant.ClientConfig{
 		NamespaceId:         Cfg.Nacos.NameSpaceId,
 		TimeoutMs:           5000,

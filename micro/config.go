@@ -31,7 +31,7 @@ type Config struct {
 
 func readFile() {
 	viper.SetConfigName("bootstrap")
-	viper.AddConfigPath("config")
+	viper.AddConfigPath(".")
 	viper.SetConfigType("yaml")
 
 	if err := viper.ReadInConfig(); err != nil {

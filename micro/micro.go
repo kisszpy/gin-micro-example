@@ -2,11 +2,14 @@ package micro
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 	"net"
+	"net/http"
+	"strconv"
 )
 
 var NamingClient *naming_client.INamingClient
@@ -62,6 +65,13 @@ func NewServiceRegister(serviceName string, port int) {
 	NamingClient = &namingClient
 
 }
+func Start(port int, relativePath string, handlers ...gin.HandlerFunc) {
+	engine := gin.Default()
+	group := engine.Group(relativePath)
+	group.Handle(http.MethodGet, "/echo", handlers...)
+	engine.Run(":" + strconv.Itoa(port))
+}
+
 func GetLocalIPAddress() string {
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {

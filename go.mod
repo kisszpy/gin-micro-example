@@ -1,1 +1,1 @@
-module gin-micro-example
+module github.com/kisszpy/gin-micro-example

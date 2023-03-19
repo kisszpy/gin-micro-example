@@ -2,7 +2,6 @@ package micro
 
 import (
 	"fmt"
-	"github.com/kisszpy/gin-micro-exmaple/config"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
@@ -24,7 +23,7 @@ func TestHello() {
 }
 func (f *NacosMicro) NewServiceRegister(serviceName string, port int) {
 	clientConfig := constant.ClientConfig{
-		NamespaceId:         config.Cfg.Nacos.NameSpaceId,
+		NamespaceId:         Cfg.Nacos.NameSpaceId,
 		TimeoutMs:           5000,
 		NotLoadCacheAtStart: true,
 		LogDir:              "/tmp/nacos/log",
@@ -60,7 +59,7 @@ func (f *NacosMicro) NewServiceRegister(serviceName string, port int) {
 		Healthy:     true,
 		Metadata:    map[string]string{"version": "1.0"},
 		ClusterName: "DEFAULT",
-		GroupName:   config.Cfg.Nacos.GroupName,
+		GroupName:   Cfg.Nacos.GroupName,
 		Ephemeral:   true,
 	})
 
